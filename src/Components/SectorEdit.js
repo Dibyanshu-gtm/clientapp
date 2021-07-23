@@ -19,7 +19,7 @@ class SectorEdit extends Component{
     async componentDidMount(){
         if(this.props.match.params.id!=='')
         {
-            const sect=await(await fetch(`/getsector/${this.props.match.params.id}`)).json();
+            const sect=await(await fetch(`https://stockexchangebackend.herokuapp.com/getsector/${this.props.match.params.id}`)).json();
             this.setState({sector:sect});
         }
     }
@@ -35,7 +35,7 @@ class SectorEdit extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const{sector}=this.state;
-        await fetch('/sector'+'/'+sector.id,{
+        await fetch('https://stockexchangebackend.herokuapp.com/sector'+'/'+sector.id,{
             method:'PUT',
             headers: {
                 'Accept': 'application/json',

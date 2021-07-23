@@ -26,7 +26,7 @@ class SectorPost extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const {item}= this.state;
-        await fetch('/sector' , {
+        await fetch('https://stockexchangebackend.herokuapp.com/sector' , {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

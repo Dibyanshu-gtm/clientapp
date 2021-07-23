@@ -35,7 +35,7 @@ class CompanyPost extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const {item}= this.state;
-        await fetch('/company' , {
+        await fetch('https://stockexchangebackend.herokuapp.com/company' , {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

@@ -25,7 +25,7 @@ class ExchangePost extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const {item}= this.state;
-        await fetch('/exchange' , {
+        await fetch('https://stockexchangebackend.herokuapp.com/exchange' , {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

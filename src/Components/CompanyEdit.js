@@ -20,7 +20,7 @@ class CompanyEdit extends Component{
     }
     async componentDidMount(){
         if(this.props.match.params.id!==''){
-            const comp= await(await fetch(`/company/${this.props.match.params.id}`)).json();
+            const comp= await(await fetch(`https://stockexchangebackend.herokuapp.com/company/${this.props.match.params.id}`)).json();
             this.setState({company:comp});
             
         }
@@ -37,7 +37,7 @@ class CompanyEdit extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const{company}=this.state;
-        await fetch('/company'+ (company.id ? '/' + company.id : ''),{
+        await fetch('https://stockexchangebackend.herokuapp.com/company'+ (company.id ? '/' + company.id : ''),{
             method:'PUT',
             headers: {
                 'Accept': 'application/json',

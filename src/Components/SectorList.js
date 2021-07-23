@@ -10,7 +10,7 @@ class SectorList extends Component{
 
     async componentDidMount(){
         this.setState({isLoading:true});
-        await fetch('/sector')
+        await fetch('https://stockexchangebackend.herokuapp.com/sector')
         .then(response=>response.json())
         .then(data=>this.setState({sectors:data,isLoading:false}));
     }

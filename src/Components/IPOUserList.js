@@ -9,7 +9,7 @@ class IPOUserList extends Component{
     async componentDidMount()
     {
         this.setState({isLoading:true});
-        await fetch('/ipodetails')
+        await fetch('https://stockexchangebackend.herokuapp.com/ipodetails')
         .then(response=>response.json())
         .then(data=>this.setState({ipos:data,isLoading:false}));
     }

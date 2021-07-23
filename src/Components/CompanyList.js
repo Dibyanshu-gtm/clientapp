@@ -9,7 +9,7 @@ class CompanyList extends Component{
     }
     async componentDidMount(){
         this.setState({isLoading:true});
-        await fetch('/company')
+        await fetch('https://stockexchangebackend.herokuapp.com/company')
         .then(response=>response.json())
         .then(data=>this.setState({companies:data,isLoading:false}));
     }

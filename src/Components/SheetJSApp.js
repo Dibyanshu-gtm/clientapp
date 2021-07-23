@@ -85,7 +85,7 @@ export default class SheetJSApp extends React.Component {
            item["Date"]=d[3];
            item["Time"]=d[4];
             x=x+1;
-           await fetch('/price',{
+           await fetch('https://stockexchangebackend.herokuapp.com/price',{
             method: 'POST',
             headers:{
                 'Accept': 'application/json',
