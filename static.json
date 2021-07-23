@@ -4,7 +4,7 @@
     "routes": {
       "/**": "index.html"
     },"proxies": {
-        "/api/": {
+        "/api": {
             "origin": "https://stockexchangebackend.herokuapp.com"
         }
     }
