@@ -10,7 +10,7 @@ class ExchangeList extends Component{
     async componentDidMount()
     {
         this.setState({isLoading:true});
-        await fetch('/exchange')
+        await fetch('/api/exchange')
         .then(response=>response.json())
         .then(data=>this.setState({exchanges:data,isLoading:false}));
     }
