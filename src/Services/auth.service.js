@@ -1,8 +1,8 @@
 import axios from "axios";
 
 
- //const API_URL="http://localhost:8080/";
-const API_URL= "https://stockexchangebackend.herokuapp.com/"
+//const API_URL="http://localhost:8080/auth/";
+const API_URL= "https://stockexchangebackend.herokuapp.com/auth/"
 class AuthService{
     login(username,password){
         
@@ -13,7 +13,7 @@ class AuthService{
         })
         .then(response=>{
             {
-             if(response.data!="User Not confirmed his email" && response.data!="") {
+             if(response.data.accessToken &&response.data!="User Not confirmed his email" && response.data!="") {
 
             localStorage.setItem("user", JSON.stringify(response.data));
           

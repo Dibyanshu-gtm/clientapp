@@ -6,6 +6,7 @@ import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import Column2D from "fusioncharts/fusioncharts.charts";
 
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import authHeader from '../Services/auth-header';
 
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 let chartConfigsitem={
@@ -55,11 +56,15 @@ let chartConfigsitem={
     {
       //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
-        fetch(API_URL+'exchange')
+        fetch(API_URL+'exchange',{
+          headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({exchanges:data}));
 
-        fetch(API_URL+'company')
+        fetch(API_URL+'company',{
+          headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({companies:data}));
     }
@@ -73,7 +78,7 @@ let chartConfigsitem={
             return company.companyName.match(regex);
         })
       }
-      console.log('matches',matches);
+      //console.log('matches',matches);
       let suggestions=this.state.suggestions;
       this.setState({suggestions:matches});
       let text =this.state.text;
@@ -95,15 +100,17 @@ let chartConfigsitem={
   }
     handleSubmit(event){
       event.preventDefault();
-      //let API_URL="http://127.0.0.1:8080/"
-      let API_URL="https://stockexchangebackend.herokuapp.com/"
+      //let API_URL="http://127.0.0.1:8080"
+      let API_URL="https://stockexchangebackend.herokuapp.com"
       const{item}=this.state;
       const{text}=this.state;
       item.companyName=text;
       if(item.timetype=="Yearly")
       {
         
-        fetch(API_URL+'/getpriceyear/'+item.companyName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename)
+        fetch(API_URL+'/getpriceyear/'+item.companyName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename,{
+          headers: authHeader()
+        })
         .then(response=>{return response.json()})
         .then(response=>{
           const{chartConfigs}=this.state;
@@ -134,7 +141,9 @@ let chartConfigsitem={
       else if(item.timetype=="Date")
       {
         
-        fetch(API_URL+'/getpricedate/'+item.companyName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename)
+        fetch(API_URL+'/getpricedate/'+item.companyName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename,{
+          headers: authHeader()
+        })
         .then(response=>{return response.json()})
         .then(response=>{
           const{chartConfigs}=this.state;
@@ -164,7 +173,9 @@ let chartConfigsitem={
       }
       else{
         
-        fetch(API_URL+'/getpricetime/'+item.companyName+'?from='+item.from+'&exchangename='+item.exchangename)
+        fetch(API_URL+'/getpricetime/'+item.companyName+'?from='+item.from+'&exchangename='+item.exchangename,{
+          headers: authHeader()
+        })
         .then(response=>{return response.json()})
         .then(response=>{
           const{chartConfigs}=this.state;

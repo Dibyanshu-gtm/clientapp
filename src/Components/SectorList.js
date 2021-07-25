@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import authHeader from '../Services/auth-header';
 
 class SectorList extends Component{
     constructor(props){
@@ -12,7 +13,9 @@ class SectorList extends Component{
         this.setState({isLoading:true});
         //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
-        await fetch(API_URL+'sector')
+        await fetch(API_URL+'sector',{
+            headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({sectors:data,isLoading:false}));
     }

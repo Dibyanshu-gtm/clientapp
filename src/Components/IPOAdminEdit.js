@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 
 class IPOAdminEdit extends Component{
     ipoItem={
@@ -32,7 +32,9 @@ class IPOAdminEdit extends Component{
         if(this.props.match.params.id!==''){
             //const API_URL='http://localhost:8080/';
             const API_URL='https://stockexchangebackend.herokuapp.com/'
-            const ip= await(await fetch(API_URL+`ipodetails/${this.props.match.params.id}`)).json();
+            const ip= await(await fetch(API_URL+`ipodetails/${this.props.match.params.id}`,{
+                headers: authHeader()
+            })).json();
             this.setState({ipo:ip});
             const ipop1=this.state.ipop;
             ipop1["companyName"]=this.state.ipo.companyName;
@@ -64,10 +66,7 @@ class IPOAdminEdit extends Component{
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         await fetch(API_URL+'ipo',{
             method:'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: authHeader(),
             body:JSON.stringify(ipop),
         });
         this.props.history.push('/ipodetails');

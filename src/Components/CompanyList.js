@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
-
+import authHeader from '../Services/auth-header';
 class CompanyList extends Component{
     constructor(props){
         super(props);
@@ -12,7 +12,9 @@ class CompanyList extends Component{
         this.setState({isLoading:true});
         //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
-        await fetch(API_URL+'company')
+        await fetch(API_URL+'company',{
+            headers:authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({companies:data,isLoading:false}));
     }
@@ -21,9 +23,12 @@ class CompanyList extends Component{
         //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         fetch(API_URL+'delete/'+id,{
-            method:'DELETE'
+            method:'DELETE',
+            headers:authHeader()
         }).then(response=>
-            fetch(API_URL+'company')
+            fetch(API_URL+'company',{
+                headers:authHeader()
+            })
             .then(response=>{
                 if(response.status==204)
                 {
@@ -56,7 +61,7 @@ class CompanyList extends Component{
         if(isLoading){
             return<div> <p>.....Loading</p>
             <div className="float-right">
-                        <Button color="success" tag={Link} to="/addcompany">Add Group</Button>
+                        <Button color="success" tag={Link} to="/addcompany">Add Company</Button>
                     </div>
             </div>
         }
@@ -76,7 +81,7 @@ class CompanyList extends Component{
             <div>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/addcompany">Add Group</Button>
+                        <Button color="success" tag={Link} to="/addcompany">Add Company</Button>
                     </div>
                     <h3>Companies</h3>
                     <Table className="mt-4">

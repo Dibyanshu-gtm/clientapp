@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
-
+import authHeader from '../Services/auth-header';
 class ExchangeList extends Component{
     constructor(props){
         super(props);
@@ -12,7 +12,9 @@ class ExchangeList extends Component{
         this.setState({isLoading:true});
         //const API_URL='http://localhost:8080/';
         const API_URL='/api/'
-        await fetch(API_URL+'exchange')
+        await fetch(API_URL+'exchange',{
+            headers:authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({exchanges:data,isLoading:false}));
     }

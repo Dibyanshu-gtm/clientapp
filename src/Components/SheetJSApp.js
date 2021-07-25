@@ -7,7 +7,7 @@
 */
 import React from "react";
 import XLSX from "xlsx";
-
+import authHeader from "../Services/auth-header";
 export default class SheetJSApp extends React.Component {
     emptyItem={
         "pricePerShare":"",
@@ -89,10 +89,7 @@ export default class SheetJSApp extends React.Component {
             const API_URL='https://stockexchangebackend.herokuapp.com/'
            await fetch(API_URL+'price',{
             method: 'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers:authHeader(),
             body:JSON.stringify(item),
 
         });
@@ -102,7 +99,9 @@ export default class SheetJSApp extends React.Component {
         })
         //let API_URL="http://127.0.0.1:8080/getcompanyname"
         let API_URL="https://stockexchangebackend.herokuapp.com/getcompanyname"
-        fetch(API_URL+'/'+ccode+'?'+'exchangename='+exname)
+        fetch(API_URL+'/'+ccode+'?'+'exchangename='+exname,{
+          headers:authHeader()
+        })
         .then(response=>{return response.json()})
         .then(response=>{
           

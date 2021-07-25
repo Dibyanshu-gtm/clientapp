@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 class ExchangePost extends Component{
     exchangeitem={
         "name":""
@@ -29,10 +29,7 @@ class ExchangePost extends Component{
         const API_URL='/api/'
         await fetch(API_URL+'exchange' , {
             method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers: authHeader(),
             body: JSON.stringify(item),
           });
           this.props.history.push('/exchanges');

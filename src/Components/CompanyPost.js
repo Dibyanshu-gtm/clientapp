@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 class CompanyPost extends Component{
     postItem={
         "companyName":"",
@@ -19,10 +19,26 @@ class CompanyPost extends Component{
     constructor(props){
         super(props);
         this.state={
-            item:this.postItem
+            item:this.postItem,
+            exchanges:[],
+            sectors:[]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+    }
+    componentDidMount(){
+        //const API_URL='http://localhost:8080/';
+      const API_URL='https://stockexchangebackend.herokuapp.com/'
+        fetch(API_URL+'exchange',{
+          headers: authHeader()
+        })
+        .then(response=>response.json())
+        .then(data=>this.setState({exchanges:data}));
+        fetch(API_URL+'sector',{
+          headers: authHeader()
+        })
+        .then(response=>response.json())
+        .then(data=>this.setState({sectors:data}));
     }
     handleChange(event){
         const target = event.target;
@@ -39,16 +55,21 @@ class CompanyPost extends Component{
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         await fetch(API_URL+'company' , {
             method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers: authHeader(),
             body: JSON.stringify(item),
           });
           this.props.history.push('/companies');
     }
     render(){
-        const{item}=this.state;
+        const{item,exchanges,sectors}=this.state;
+        const optionItems=exchanges.map((exchange)=>
+          
+          <option value={exchange.name}>{exchange.name}</option>
+        );
+
+        const optionsec=sectors.map((sector)=>
+        <option value={sector.sectorName}>{sector.sectorName}</option>
+        );
         const title=<h2>Add Group</h2>
         return <div>
             <Container>
@@ -97,13 +118,25 @@ class CompanyPost extends Component{
                     </FormGroup>
                     <FormGroup>
                         <Label for="exchangeName">Exchange Name</Label>
-                        <Input type="text" name="exchangeName" id="exchangeName" value={item.exchangeName || ''}
-                        onChange={this.handleChange} autoComplete="exchangeName"/>
+                        {/* <Input type="text" name="exchangeName" id="exchangeName" value={item.exchangeName || ''}
+                        onChange={this.handleChange} autoComplete="exchangeName"/> */}
+                        <Input type="select" name="exchangeName" id="exchangeName" onChange={this.handleChange}>
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                            </option>
+                          {optionItems}
+                        </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for="sector">Sector</Label>
-                        <Input type="text" name="sector" id="sector" value={item.sector || ''}
-                        onChange={this.handleChange} autoComplete="sector"/>
+                        {/* <Input type="text" name="sector" id="sector" value={item.sector || ''}
+                        onChange={this.handleChange} autoComplete="sector"/> */}
+                        <Input type="select" name="sector" id="sector" onChange={this.handleChange}>
+                    <option value="none" selected disabled hidden>
+                            Select an Option
+                            </option>
+                            {optionsec}
+                    </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for="CompanyCode">Company Code</Label>

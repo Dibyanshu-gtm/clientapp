@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import {Container,Table} from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 class IPOUserList extends Component{
     constructor(props){
         super(props);
@@ -11,7 +11,9 @@ class IPOUserList extends Component{
         this.setState({isLoading:true});
         //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
-        await fetch(API_URL+'ipodetails')
+        await fetch(API_URL+'ipodetails',{
+            headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({ipos:data,isLoading:false}));
     }

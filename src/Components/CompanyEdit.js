@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 class CompanyEdit extends Component{
     companyItem={
         companyName:'',
@@ -22,7 +22,9 @@ class CompanyEdit extends Component{
         if(this.props.match.params.id!==''){
             //const API_URL='http://localhost:8080/';
             const API_URL='https://stockexchangebackend.herokuapp.com/'
-            const comp= await(await fetch(API_URL+`company/${this.props.match.params.id}`)).json();
+            const comp= await(await fetch(API_URL+`company/${this.props.match.params.id}`,{
+                headers: authHeader()
+            })).json();
             this.setState({company:comp});
             
         }
@@ -43,10 +45,7 @@ class CompanyEdit extends Component{
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         await fetch(API_URL+'company'+ (company.id ? '/' + company.id : ''),{
             method:'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: authHeader(),
             body:JSON.stringify(company),
         });
         this.props.history.push('/companies');

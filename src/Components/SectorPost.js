@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import authHeader from '../Services/auth-header';
 class SectorPost extends Component{
     postItem={
         sectorName:"",
@@ -30,10 +30,7 @@ class SectorPost extends Component{
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         await fetch(API_URL+'sector' , {
             method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers: authHeader(),
             body: JSON.stringify(item),
           });
           this.props.history.push('/sectors');

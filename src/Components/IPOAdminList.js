@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
-
+import authHeader from '../Services/auth-header';
 class IPOAdminList extends Component{
     constructor(props){
         super(props);
@@ -12,7 +12,9 @@ class IPOAdminList extends Component{
         this.setState({isLoading:true});
         //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
-        await fetch(API_URL+'ipodetails')
+        await fetch(API_URL+'ipodetails',{
+            headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({ipos:data,isLoading:false}));
     }

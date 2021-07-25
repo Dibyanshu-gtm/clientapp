@@ -4,7 +4,7 @@ import FusionCharts from "fusioncharts";
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import Column2D from "fusioncharts/fusioncharts.charts";
-
+import authHeader from '../Services/auth-header';
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
@@ -44,7 +44,7 @@ let chartConfigsitem={
     constructor(props)
     {
         super(props);
-        this.state={chartConfigs:chartConfigsitem,item:this.postItem,exchanges:[]};
+        this.state={chartConfigs:chartConfigsitem,item:this.postItem,exchanges:[],sectors:[]};
          this.handleSubmit=this.handleSubmit.bind(this);
          this.handleChange=this.handleChange.bind(this);
          this.remove=this.remove.bind(this);
@@ -53,9 +53,16 @@ let chartConfigsitem={
     {
       //const API_URL='http://localhost:8080/';
       const API_URL='https://stockexchangebackend.herokuapp.com/'
-        fetch(API_URL+'exchange')
+        fetch(API_URL+'exchange',{
+          headers: authHeader()
+        })
         .then(response=>response.json())
         .then(data=>this.setState({exchanges:data}));
+        fetch(API_URL+'sector',{
+          headers: authHeader()
+        })
+        .then(response=>response.json())
+        .then(data=>this.setState({sectors:data}));
     }
     handleChange(event){
         const target = event.target;
@@ -67,14 +74,16 @@ let chartConfigsitem={
     }
     handleSubmit(event){
         event.preventDefault();
-        //let API_URL="http://127.0.0.1:8080/"
-        let API_URL="https://stockexchangebackend.herokuapp.com/"
+        //let API_URL="http://127.0.0.1:8080"
+        let API_URL="https://stockexchangebackend.herokuapp.com"
         const{item}=this.state;
         
         if(item.timetype=="Yearly")
         {
           
-          fetch(API_URL+'/getsectorpriceyear/'+item.sectorName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename)
+          fetch(API_URL+'/getsectorpriceyear/'+item.sectorName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename,{
+            headers:authHeader()
+          })
           .then(response=>{return response.json()})
           .then(response=>{
             const{chartConfigs}=this.state;
@@ -105,7 +114,9 @@ let chartConfigsitem={
         else if(item.timetype=="Date")
         {
           
-          fetch(API_URL+'/getsectorpricedate/'+item.sectorName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename)
+          fetch(API_URL+'/getsectorpricedate/'+item.sectorName+'?from='+item.from+'&todate='+item.todate+'&exchangename='+item.exchangename,{
+            headers: authHeader()
+          })
           .then(response=>{return response.json()})
           .then(response=>{
             const{chartConfigs}=this.state;
@@ -149,11 +160,15 @@ let chartConfigsitem={
 
       render(){
         const {chartConfigs}=this.state;
-        const{item,exchanges}=this.state;
+        const{item,exchanges,sectors}=this.state;
         const title=<h1>STOCK COMPARISION</h1>
         const optionItems=exchanges.map((exchange)=>
           
           <option value={exchange.name}>{exchange.name}</option>
+        );
+
+        const optionsec=sectors.map((sector)=>
+        <option value={sector.sectorName}>{sector.sectorName}</option>
         );
           return (
               <div>{title}
@@ -171,7 +186,13 @@ let chartConfigsitem={
                   <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="sectorName">Sector Name</Label>
-                        <Input type="text" name="sectorName" id="sectorName" value={item.sectorName || ''} onChange={this.handleChange} />
+                        {/* <Input type="text" name="sectorName" id="sectorName" value={item.sectorName || ''} onChange={this.handleChange} /> */}
+                    <Input type="select" name="sectorName" id="sectorName" onChange={this.handleChange}>
+                    <option value="none" selected disabled hidden>
+                            Select an Option
+                            </option>
+                            {optionsec}
+                    </Input>
                     </FormGroup>
                     {chartConfigs.dataSource.dataset.length==0 &&(<FormGroup>
                         <Label for="exchangename">Exchange Name</Label>
