@@ -30,7 +30,9 @@ class IPOAdminEdit extends Component{
     }
     async componentDidMount(){
         if(this.props.match.params.id!==''){
-            const ip= await(await fetch(`https://stockexchangebackend.herokuapp.com/ipodetails/${this.props.match.params.id}`)).json();
+            //const API_URL='http://localhost:8080/';
+            const API_URL='https://stockexchangebackend.herokuapp.com/'
+            const ip= await(await fetch(API_URL+`ipodetails/${this.props.match.params.id}`)).json();
             this.setState({ipo:ip});
             const ipop1=this.state.ipop;
             ipop1["companyName"]=this.state.ipo.companyName;
@@ -58,8 +60,9 @@ class IPOAdminEdit extends Component{
         {
             ipop.exchangename='BSE';
         }
-        
-        await fetch('https://stockexchangebackend.herokuapp.com/ipo',{
+        //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        await fetch(API_URL+'ipo',{
             method:'POST',
             headers: {
                 'Accept': 'application/json',

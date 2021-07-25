@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class ExchangePost extends Component{
@@ -25,7 +25,9 @@ class ExchangePost extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const {item}= this.state;
-        await fetch('/api/exchange' , {
+        //const API_URL='http://localhost:8080/';
+        const API_URL='/api/'
+        await fetch(API_URL+'exchange' , {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

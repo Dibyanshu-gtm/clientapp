@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import {Button, ButtonGroup,Container,Table} from 'reactstrap';
+import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 class SectorList extends Component{
@@ -10,7 +10,9 @@ class SectorList extends Component{
 
     async componentDidMount(){
         this.setState({isLoading:true});
-        await fetch('https://stockexchangebackend.herokuapp.com/sector')
+        //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        await fetch(API_URL+'sector')
         .then(response=>response.json())
         .then(data=>this.setState({sectors:data,isLoading:false}));
     }

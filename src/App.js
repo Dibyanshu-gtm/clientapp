@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import Home from './Components/Home';
 import SheetJSApp from './Components/SheetJSApp';
 import CompanyEdit from './Components/CompanyEdit';
-import AppNavbar from './Components/AppNavbar';
 import CompanyList from './Components/CompanyList';
 import CompanyPost from './Components/CompanyPost';
 import ExchangeList from './Components/ExchangeList';
@@ -16,6 +15,9 @@ import IPOUserMChart from './Components/IPOUserMChart';
 import SectorEdit from './Components/SectorEdit';
 import SectorList from './Components/SectorList';
 import SectorPost from './Components/SectorPost';
+import IPOUserSChart from './Components/IPOUserSChart';
+import CompanyUserList from './Components/CompanyUserList';
+import SectorUserList from './Components/SectorUserList';
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch ,Link} from 'react-router-dom'; 
 import AuthService from './Services/auth.service';
@@ -96,6 +98,24 @@ componentDidMount(){
                         href="/chart">Chart</NavLink>
                     </NavItem>)
                     }
+                    {
+                      !isAdmin &&currentUser &&(<NavItem>
+                        <NavLink
+                        href="/schart">Sector Chart</NavLink>
+                    </NavItem>)
+                    }
+                    {
+                      !isAdmin &&currentUser &&(<NavItem>
+                        <NavLink
+                        href="/companieslist">Companies</NavLink>
+                    </NavItem>)
+                    }
+                    {
+                      !isAdmin &&currentUser &&(<NavItem>
+                        <NavLink
+                        href="/sectorlist">Sectors</NavLink>
+                    </NavItem>)
+                    }
                     
                     {currentUser ?(
                       <NavItem>
@@ -135,10 +155,13 @@ componentDidMount(){
         <Route path="/ipouser" component={IPOUserList}/>
         <Route path="/login" component={Login} />
         <Route path="/chart" component={IPOUserMChart} />
+        <Route path="/schart" component={IPOUserSChart} />
         <Route path="/register" component={Register} />
         <Route path="/sectors" component={SectorList} />
         <Route path="/addsector" component={SectorPost} />
         <Route path="/sector/:id" component={SectorEdit} />
+        <Route path="/companieslist" component={CompanyUserList} />
+        <Route path="/sectorlist" component={SectorUserList} />
         </Switch>
         </div>
   

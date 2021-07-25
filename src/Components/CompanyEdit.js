@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class CompanyEdit extends Component{
@@ -20,7 +20,9 @@ class CompanyEdit extends Component{
     }
     async componentDidMount(){
         if(this.props.match.params.id!==''){
-            const comp= await(await fetch(`https://stockexchangebackend.herokuapp.com/company/${this.props.match.params.id}`)).json();
+            //const API_URL='http://localhost:8080/';
+            const API_URL='https://stockexchangebackend.herokuapp.com/'
+            const comp= await(await fetch(API_URL+`company/${this.props.match.params.id}`)).json();
             this.setState({company:comp});
             
         }
@@ -37,7 +39,9 @@ class CompanyEdit extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const{company}=this.state;
-        await fetch('https://stockexchangebackend.herokuapp.com/company'+ (company.id ? '/' + company.id : ''),{
+        //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        await fetch(API_URL+'company'+ (company.id ? '/' + company.id : ''),{
             method:'PUT',
             headers: {
                 'Accept': 'application/json',

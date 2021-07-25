@@ -44,12 +44,47 @@ let chartConfigsitem={
     constructor(props)
     {
         super(props);
-        this.state={chartConfigs:chartConfigsitem,item:this.postItem};
+        this.state={chartConfigs:chartConfigsitem,item:this.postItem,
+          exchanges:[],companies:[],text:'',suggestions:[]};
          this.handleSubmit=this.handleSubmit.bind(this);
          this.handleChange=this.handleChange.bind(this);
          this.remove=this.remove.bind(this);
+         
     }
-    
+    componentDidMount()
+    {
+      //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        fetch(API_URL+'exchange')
+        .then(response=>response.json())
+        .then(data=>this.setState({exchanges:data}));
+
+        fetch(API_URL+'company')
+        .then(response=>response.json())
+        .then(data=>this.setState({companies:data}));
+    }
+    onChangeHandler(x){
+      let matches=[];
+      const {companies}=this.state;
+      if(x.length>0)
+      {
+        matches=companies.filter(company=>{
+          const regex= new RegExp(`${x}`,"gi");
+            return company.companyName.match(regex);
+        })
+      }
+      console.log('matches',matches);
+      let suggestions=this.state.suggestions;
+      this.setState({suggestions:matches});
+      let text =this.state.text;
+      this.setState({text:x});
+    }
+    onSuggestHandler(x){
+      let text =this.state.text;
+      let suggestions=this.state.suggestions;
+      this.setState({text:x});
+      this.setState({suggestions:[]});
+    }
     handleChange(event){
       const target = event.target;
       const value = target.value;
@@ -63,7 +98,8 @@ let chartConfigsitem={
       //let API_URL="http://127.0.0.1:8080/"
       let API_URL="https://stockexchangebackend.herokuapp.com/"
       const{item}=this.state;
-      
+      const{text}=this.state;
+      item.companyName=text;
       if(item.timetype=="Yearly")
       {
         
@@ -170,8 +206,13 @@ let chartConfigsitem={
     }
     render(){
         const {chartConfigs}=this.state;
-        const{item}=this.state;
+        const{item,exchanges,text}=this.state;
+        const {suggestions}=this.state;
         const title=<h1>STOCK COMPARISION</h1>
+        const optionItems=exchanges.map((exchange)=>
+          
+          <option value={exchange.name}>{exchange.name}</option>
+        );
         
           return (
               <div>{title}
@@ -188,14 +229,30 @@ let chartConfigsitem={
                   <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="companyName">Company Name</Label>
-                        <Input type="text" name="companyName" id="companyName" value={item.companyName || ''} onChange={this.handleChange} />
+                        {/* <Input type="text" name="companyName" id="companyName" value={item.companyName || ''} onChange={this.handleChange} /> */}
+                        <Input type="text" name="companyName" id="companyName"  onChange={e=>this.onChangeHandler(e.target.value)} value={text}
+                    onBlur={()=>{
+                      setTimeout(()=>{
+                        let suggestions=this.state.suggestions;
+                        this.setState({suggestions:[]})
+                      },300);
+                    }}
+                    ></Input>
+                    {suggestions && suggestions.map((suggestion,i)=>
+                    <div key={i} onClick={()=>this.onSuggestHandler(suggestion.companyName)} className="suggestion justify-content-md-center" ><center>{suggestion.companyName}</center></div>)}
                     </FormGroup>
                     {chartConfigs.dataSource.dataset.length==0 &&(<FormGroup>
                         <Label for="exchangename">Exchange Name</Label>
-                        <Input type="text" name="exchangename" id="exchangename" value={item.exchangename || ''} onChange={this.handleChange} />
+                        {/* <Input type="text" name="exchangename" id="exchangename" value={item.exchangename || ''} onChange={this.handleChange} /> */}
+                        <Input type="select" name="exchangename" id="exchangename" onChange={this.handleChange}>
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                            </option>
+                          {optionItems}
+                        </Input>
                     </FormGroup>)}
                     {chartConfigs.dataSource.dataset.length==0 &&(<FormGroup>
-                        <Label for="timetype">Select</Label>
+                        <Label for="timetype">Periodicity</Label>
                         <Input type="select" name="timetype" id="timetype"  onChange={this.handleChange}>
                           <option value="none" selected disabled hidden>
                             Select an Option
@@ -207,17 +264,30 @@ let chartConfigsitem={
                     </FormGroup>)}
                     {chartConfigs.dataSource.dataset.length==0 &&(<FormGroup>
                         <Label for="from">From (If Date then format - YYYY-MM-DD)</Label>
-                        <Input type="text" name="from" id="from" value={item.from || ''}  onChange={this.handleChange}/>
+                        <Input type="text" name="from" id="from" value={item.from || ''}  onChange={this.handleChange} autoComplete="off" />
                     </FormGroup>)}
                     {item.timetype!="Daily" && chartConfigs.dataSource.dataset.length==0 &&(<FormGroup>
                         <Label for="todate">To</Label>
-                        <Input type="text" name="todate" id="todate" value={item.todate || ''} onChange={this.handleChange}/>
+                        <Input type="text" name="todate" id="todate" value={item.todate || ''} onChange={this.handleChange} autoComplete="off"/>
                     </FormGroup>)}
                     <FormGroup>
                       <Button color="primary" type="submit">Add</Button>
                       <Button color="danger" onClick={this.remove}>Remove</Button>
                     </FormGroup>
                   </Form>
+                  {/* <Form>
+                    
+                    <Input type="text" onChange={e=>this.onChangeHandler(e.target.value)} value={text}
+                    onBlur={()=>{
+                      setTimeout(()=>{
+                        let suggestions=this.state.suggestions;
+                        this.setState({suggestions:[]})
+                      },100);
+                    }}
+                    ></Input>
+                    {suggestions && suggestions.map((suggestion,i)=>
+                    <div key={i} onClick={()=>this.onSuggestHandler(suggestion.companyName)} className="suggestion justify-content-md-center">{suggestion.companyName}</div>)}
+                  </Form> */}
               </Container>
           
           <div class="col-md-8 mb-5 offset-md-3">

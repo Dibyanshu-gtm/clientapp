@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class SectorPost extends Component{
@@ -26,7 +26,9 @@ class SectorPost extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const {item}= this.state;
-        await fetch('https://stockexchangebackend.herokuapp.com/sector' , {
+        //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        await fetch(API_URL+'sector' , {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

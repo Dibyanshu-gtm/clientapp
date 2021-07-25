@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 
@@ -19,7 +19,9 @@ class SectorEdit extends Component{
     async componentDidMount(){
         if(this.props.match.params.id!=='')
         {
-            const sect=await(await fetch(`https://stockexchangebackend.herokuapp.com/getsector/${this.props.match.params.id}`)).json();
+            //const API_URL='http://localhost:8080/';
+            const API_URL='https://stockexchangebackend.herokuapp.com/'
+            const sect=await(await fetch(API_URL+`getsector/${this.props.match.params.id}`)).json();
             this.setState({sector:sect});
         }
     }
@@ -35,7 +37,9 @@ class SectorEdit extends Component{
     async handleSubmit(event){
         event.preventDefault();
         const{sector}=this.state;
-        await fetch('https://stockexchangebackend.herokuapp.com/sector'+'/'+sector.id,{
+        //const API_URL='http://localhost:8080/';
+        const API_URL='https://stockexchangebackend.herokuapp.com/'
+        await fetch(API_URL+'sector'+'/'+sector.id,{
             method:'PUT',
             headers: {
                 'Accept': 'application/json',

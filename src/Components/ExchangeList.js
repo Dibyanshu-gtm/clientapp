@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import {Button, ButtonGroup,Container,Table} from 'reactstrap';
+import {Button,Container,Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 class ExchangeList extends Component{
@@ -10,7 +10,9 @@ class ExchangeList extends Component{
     async componentDidMount()
     {
         this.setState({isLoading:true});
-        await fetch('/api/exchange')
+        //const API_URL='http://localhost:8080/';
+        const API_URL='/api/'
+        await fetch(API_URL+'exchange')
         .then(response=>response.json())
         .then(data=>this.setState({exchanges:data,isLoading:false}));
     }

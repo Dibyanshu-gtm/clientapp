@@ -2,12 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1fa6e8b-3823-45c6-8748-624fbdc04a66" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CompanyEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CompanyEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CompanyList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CompanyList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CompanyPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CompanyPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ExchangeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ExchangeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ExchangePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ExchangePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/IPOAdminEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/IPOAdminEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/IPOAdminList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/IPOAdminList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/IPOUserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/IPOUserList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/IPOUserMChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/IPOUserMChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SectorEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SectorEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SectorList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SectorList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SectorPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SectorPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SheetJSApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SheetJSApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/auth.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1vhQ1yapvj9ndzR0z0RQN8aPfrW" />
   <component name="ProjectViewState">
@@ -28,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1627011630462</updated>
       <workItem from="1627011633248" duration="3000" />
+      <workItem from="1627023441873" duration="9000" />
     </task>
     <servers />
   </component>
