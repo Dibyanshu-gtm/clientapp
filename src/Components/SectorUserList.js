@@ -7,7 +7,7 @@ class SectorUserList extends Component{
     
     constructor(props){
         super(props);
-        this.state={sectors:[],isLoading:true,showHide:false};
+        this.state={sectors:[],isLoading:true,showHide:false,current:{}};
     }
 
     async componentDidMount(){
@@ -20,8 +20,9 @@ class SectorUserList extends Component{
         .then(response=>response.json())
         .then(data=>this.setState({sectors:data,isLoading:false}));
     }
-    handleModalShowHide() {
+    handleModalShowHide(x) {
         this.setState({ showHide: !this.state.showHide })
+        this.setState({current:x});
     }
     render(){
         const{sectors,isLoading}=this.state;
@@ -29,21 +30,21 @@ class SectorUserList extends Component{
             return <p>No Sectors Found</p>
         }
         const secList=sectors.map(sector=>{
-            
+            const {current}= this.state;
             return <tr key={sector.id}>
                 <td>{sector.sectorName}</td>
                 <td>{sector.brief}</td>
-                <td><Button variant="primary" onClick={() => this.handleModalShowHide()}>
+                <td><Button variant="primary" onClick={() => this.handleModalShowHide(sector)}>
                     More Info
                 </Button><Modal show={this.state.showHide}>
                     <Modal.Header  >
                     <Modal.Title>SECTOR DETAILS</Modal.Title>
-                    <Button className="btn-close" onClick={() => this.handleModalShowHide()}></Button>
+                    <Button className="btn-close" onClick={() => this.handleModalShowHide(sector)}></Button>
                     </Modal.Header>
                     <Modal.Body><h6>Details</h6>
                     <ul>
-                        <li>Name: {sector.sectorName}</li>
-                        <li>Brief: {sector.brief}</li>
+                        <li>Name: {current.sectorName}</li>
+                        <li>Brief: {current.brief}</li>
                     </ul>
                     </Modal.Body>
                     <Modal.Footer>

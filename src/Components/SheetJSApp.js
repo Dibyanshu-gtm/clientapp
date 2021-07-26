@@ -151,7 +151,8 @@ export default class SheetJSApp extends React.Component {
               
             >
               Upload
-            </button>
+            </button>{'  '}
+            <a href="https://github.com/Dibyanshu-gtm/resources/blob/master/sample_stock_data.xlsx" class="btn btn-danger" role="button" target="_blank" >Sample Excel Format</a>
           </div>
         </div>
         <div className="row">
