@@ -1,8 +1,8 @@
 # Stock App
 
 Stock app is a simple Spring + React Application for storing Companies , Stock Exchanges and Sectors and then analyze their Stock rates. This **clientapp** repository is the Frontend React part of the application. For the **SpringBoot Java** part , check [this](https://github.com/Dibyanshu-gtm/stockexchangebackend). In this repository, we use ReactJS, HTML, CSS, Bootstrap, Javascript . This app is also deployed in Heroku server 
-Backend: https://stockexchangebackend.herokuapp.com
-Frontend: https://stockexchangefrontend.herokuapp.com
+* Backend: https://stockexchangebackend.herokuapp.com
+* Frontend: https://stockexchangefrontend.herokuapp.com
 
 
 ## Technology Stack Used
