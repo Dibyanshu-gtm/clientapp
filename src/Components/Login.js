@@ -77,7 +77,10 @@ export default class Login extends Component{
       }
       render(){
         return (
-            <div className="col-md-12">
+          <div>
+            <h1>Welcome to Stock App.<br></br>Just a few more steps </h1>
+            <div className="col-md-12" >
+              
               <div className="card card-container">
                 <img
                   src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -91,7 +94,7 @@ export default class Login extends Component{
                     this.form = c;
                   }}
                 >
-                  <div className="form-group">
+                  <div className="form-group" class="logreg">
                     <label htmlFor="username">Username</label>
                     <Input
                       type="text"
@@ -103,7 +106,7 @@ export default class Login extends Component{
                     />
                   </div>
       
-                  <div className="form-group">
+                  <div className="form-group" class="logreg">
                     <label htmlFor="password">Password</label>
                     <Input
                       type="password"
@@ -115,15 +118,16 @@ export default class Login extends Component{
                     />
                   </div>
       
-                  <div className="form-group">
+                  <div className="form-group text-center">
                     <button
-                      className="btn btn-primary btn-block"
+                      className="btn btn-primary btn-lg btn-block mt-3"
+                      
                       disabled={this.state.loading}
                     >
                       {this.state.loading && (
                         <span className="spinner-border spinner-border-sm"></span>
                       )}
-                      <span>Login</span>
+                      <span class="buttontext">Login</span>
                     </button>
                   </div>
       
@@ -142,6 +146,7 @@ export default class Login extends Component{
                   />
                 </Form>
               </div>
+            </div>
             </div>
           );
       }

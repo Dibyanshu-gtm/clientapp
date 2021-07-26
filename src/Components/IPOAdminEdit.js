@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import authHeader from '../Services/auth-header';
-
+import { Row,Col } from 'react-bootstrap';
 class IPOAdminEdit extends Component{
     ipoItem={
         id: '',
@@ -80,18 +80,24 @@ class IPOAdminEdit extends Component{
                 {title}
                 
                 <Form onSubmit={this.handleSubmit}>
+                    <Row>
+                        <Col md={6}>
                     <FormGroup>
                         <Label for="companyName">Company Name</Label>
                         <Input type="text" name="companyName" id="companyName" value={ipo.companyName || ''}
                         onChange={this.handleChange} autoComplete="companyName" readOnly/>
                     </FormGroup>
+                    </Col>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="exchangeshow">Exchange Names Registered</Label>
                         <Input type="text" name="exchangeshow" id="exchangeshow" value={ipo.exchange || ''}
                         onChange={this.handleChange} autoComplete="exchangeshow" readOnly/>
                     </FormGroup>
+                    </Col>
+                    </Row>
                     <FormGroup>
-                        <Label for="exchangename">Exchange Name to be Registered (If any)</Label>
+                        <Label for="exchangename">Exchange Name to be Registered (If any left)</Label>
                         <Input type="text" name="exchangename" id="exchangename" value={ipop.exchangename ||''}
                         onChange={this.handleChange} autoComplete="exchangename"/>
                     </FormGroup>
@@ -112,8 +118,8 @@ class IPOAdminEdit extends Component{
                     </FormGroup>
                     <Input type="hidden" name="id" id="id" value={ipo.id}></Input>
                     <FormGroup>
-            <Button color="primary" type="submit">Save</Button>{' '}
-            <Button color="secondary" tag={Link} to="/ipodetails">Cancel</Button>
+            <Button color="primary" className="mt-3" type="submit">Save</Button>{' '}
+            <Button color="secondary" className="mt-3" tag={Link} to="/ipodetails">Cancel</Button>
           </FormGroup>
                 </Form>
             </Container>

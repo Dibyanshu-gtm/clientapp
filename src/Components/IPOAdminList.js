@@ -21,7 +21,14 @@ class IPOAdminList extends Component{
     render(){
         const {ipos,isLoading}=this.state;
         if(isLoading){
-            return <p>.....Loading</p>
+            return <div><p>NO IPO found. Create a Company first</p>
+            <div class="d-flex justify-content-center">
+  <div class="spinner-border text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+            </div>
+            
         }
         const ipoList= ipos.map(ipo=>{
             

@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-
+import { Row,Col } from 'react-bootstrap';
 import Column2D from "fusioncharts/fusioncharts.charts";
 
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
@@ -54,7 +54,7 @@ let chartConfigsitem={
     }
     componentDidMount()
     {
-      //const API_URL='http://localhost:8080/';
+        //const API_URL='http://localhost:8080/';
         const API_URL='https://stockexchangebackend.herokuapp.com/'
         fetch(API_URL+'exchange',{
           headers: authHeader()
@@ -78,7 +78,7 @@ let chartConfigsitem={
             return company.companyName.match(regex);
         })
       }
-      //console.log('matches',matches);
+      
       let suggestions=this.state.suggestions;
       this.setState({suggestions:matches});
       let text =this.state.text;
@@ -135,7 +135,7 @@ let chartConfigsitem={
             chartConfigs.dataSource.dataset.push(newDataset);
             cs=chartConfigs;
             this.setState({chartConfigs:cs})
-            //console.log('chart'+JSON.stringify(chartConfigs));
+            
         })
       }
       else if(item.timetype=="Date")
@@ -168,7 +168,7 @@ let chartConfigsitem={
             chartConfigs.dataSource.dataset.push(newDataset);
             cs=chartConfigs;
             this.setState({chartConfigs:cs})
-            //console.log('chart'+JSON.stringify(chartConfigs));
+            
         })
       }
       else{
@@ -200,7 +200,7 @@ let chartConfigsitem={
             chartConfigs.dataSource.dataset.push(newDataset);
             cs=chartConfigs;
             this.setState({chartConfigs:cs})
-            //console.log('chart'+JSON.stringify(chartConfigs));
+            
         })
       }
 
@@ -227,7 +227,7 @@ let chartConfigsitem={
         
           return (
               <div>{title}
-              <div class="card">
+              <div >
               <h3>Things to remember while using the compare tool</h3>
               <div class="card-body">
               <ul>
@@ -282,23 +282,10 @@ let chartConfigsitem={
                         <Input type="text" name="todate" id="todate" value={item.todate || ''} onChange={this.handleChange} autoComplete="off"/>
                     </FormGroup>)}
                     <FormGroup>
-                      <Button color="primary" type="submit">Add</Button>
-                      <Button color="danger" onClick={this.remove}>Remove</Button>
+                      <Button color="primary" className="mt-3" type="submit">Add</Button>{'  '}
+                      <Button color="danger" className="mt-3" onClick={this.remove}>Remove</Button>
                     </FormGroup>
                   </Form>
-                  {/* <Form>
-                    
-                    <Input type="text" onChange={e=>this.onChangeHandler(e.target.value)} value={text}
-                    onBlur={()=>{
-                      setTimeout(()=>{
-                        let suggestions=this.state.suggestions;
-                        this.setState({suggestions:[]})
-                      },100);
-                    }}
-                    ></Input>
-                    {suggestions && suggestions.map((suggestion,i)=>
-                    <div key={i} onClick={()=>this.onSuggestHandler(suggestion.companyName)} className="suggestion justify-content-md-center">{suggestion.companyName}</div>)}
-                  </Form> */}
               </Container>
           
           <div class="col-md-8 mb-5 offset-md-3">

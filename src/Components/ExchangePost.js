@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Row,Col } from 'react-bootstrap';
 import authHeader from '../Services/auth-header';
 class ExchangePost extends Component{
     exchangeitem={
@@ -41,14 +42,16 @@ class ExchangePost extends Component{
             <Container>
             {title}
             <Form onSubmit={this.handleSubmit}>
+                <Col md={5}>
             <FormGroup>
                         <Label for="name">Exchange Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                         onChange={this.handleChange} autoComplete="name"/>
             </FormGroup>
+            </Col>
             <FormGroup>
-            <Button color="primary" type="submit">Save</Button>{' '}
-            <Button color="secondary" tag={Link} to="/exchanges">Cancel</Button>
+            <Button color="primary" className="mt-5 mr-3" type="submit">Save</Button>{' '}
+            <Button color="secondary" className="mt-5 mr-3" tag={Link} to="/exchanges">Cancel</Button>
           </FormGroup>
             </Form >
             </Container>

@@ -22,12 +22,12 @@ class CompanyUserList extends Component{
     handleModalShowHide(x) {
         this.setState({ showHide: !this.state.showHide })
         this.setState({current:x});
-        //console.log(this.state.current);
+        
     }
     render(){
         const {companies,isLoading}=this.state;
         if(isLoading){
-            return <div><p>Loading Data</p></div>
+            return <div><p>No Companies Found</p></div>
         }
         const compList=companies.map(company=>{
             const {current}=this.state;
@@ -38,7 +38,7 @@ class CompanyUserList extends Component{
                 <td>{company.boardOfDirectors}</td>
                 <td><Button variant="primary" onClick={() => this.handleModalShowHide(company)}>
                     More Info
-                </Button><Modal show={this.state.showHide}>
+                </Button><Modal class="modal" show={this.state.showHide}>
                     <Modal.Header  >
                     <Modal.Title>{current.companyName}</Modal.Title>
                     <Button className="btn-close" onClick={() => this.handleModalShowHide(company)}></Button>
@@ -60,9 +60,6 @@ class CompanyUserList extends Component{
                     
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleModalShowHide()}>
-                        Close
-                    </Button>
                     </Modal.Footer>
                 </Modal></td>
             </tr>

@@ -26,8 +26,26 @@ class Home extends Component{
                 
                 <Container fluid>
                     <h1>STOCK APP</h1>
-                    {isAdmin &&(<h3>Welcome Admin . Time to Work</h3>)}
-                    {currentUser&&!isAdmin &&(<h3>Welcome User . Please Explore the Nav links</h3>)}
+                    {isAdmin &&(<div>
+                    <h3>Welcome Admin . Time to Work</h3>
+                    <br></br>
+                    <div class="col-sm-6 offset-md-3">
+                    <h3 class="card-title mb-5"> Profile Details</h3>
+                    <p>username: {currentUser.username}</p>
+                    <p>Email: {currentUser.email}</p>
+                    </div>
+                    </div>
+                    )}
+                    {currentUser&&!isAdmin &&(<div>
+                    <h3>Welcome User . Please Explore the Nav links</h3>
+                    <br></br>
+                    <div class="col-sm-6 offset-md-3">
+                    <h3 class="card-title mb-5"> Profile Details</h3>
+                    <p>username: {currentUser.username}</p>
+                    <p>Email: {currentUser.email}</p>
+                    </div>
+                    </div>
+                    )}
                     {!currentUser&&(<h3>Hello Wanderer . Welcome to this Website . Register/Login to continue</h3>)}
                 </Container>
             </div>

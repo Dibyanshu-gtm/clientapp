@@ -23,12 +23,19 @@ class SectorList extends Component{
         const{sectors,isLoading}=this.state;
         if(isLoading){
             return <div>
-                <p>...... Loading</p>
+                <p>No Sectors Found. Add more </p>
+                <div class="d-flex justify-content-center">
+  <div class="spinner-border text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
                 <div className="float-right">
+                    {'   '}
                 <Button color="success" tag={Link} to="/addsector">Add Sector</Button>
                 </div>
             </div>
         }
+        
         const secList=sectors.map(sector=>{
             return <tr key={sector.id}>
                 <td>{sector.sectorName}</td>

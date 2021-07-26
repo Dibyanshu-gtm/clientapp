@@ -70,8 +70,8 @@ class SectorEdit extends Component{
                 
                 <Input type="hidden" name="id" id="id" value={sector.id}></Input>
                 <FormGroup>
-        <Button color="primary" type="submit">Save</Button>{' '}
-        <Button color="secondary" tag={Link} to="/sectors">Cancel</Button>
+        <Button color="primary" className="mt-5 mr-3" type="submit">Save</Button>{' '}
+        <Button color="secondary" className="mt-5 mr-3" tag={Link} to="/sectors">Cancel</Button>
       </FormGroup>
             </Form>
         </Container>

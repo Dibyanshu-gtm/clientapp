@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  color:white;
+}
+.color-nav{
+  background-color: rgb(153, 57, 137);
+  margin-bottom: 15px;
 }
 .suggestion{
   cursor: pointer;
@@ -7,16 +12,21 @@
   border-left: 1px solid black;
   border-bottom: 1px solid black;
 }
+
 .suggestion:hover{
   background-color: lightskyblue;
 }
-h1{
+h1,h3,p,h2{
   text-align:center;
-  margin-top: 40px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+Form,Table,tr,table,th,ul,li{
+  color:white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,7 +34,9 @@ h1{
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.logreg{
+  color: black;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -38,6 +50,9 @@ h1{
 
 .App-link {
   color: #61dafb;
+}
+.modal .modal-content{
+  background-color: rgb(228, 210, 161);
 }
 
 @keyframes App-logo-spin {
@@ -58,7 +73,23 @@ label {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
+.bg-image{
+  
+    background-image: url('https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-repeat:no-repeat;
+    height:155vh;
+}
+.buttontext{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+}
+.float-right{
+  float: left;
+}
+.mask{
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 155vh;
+}
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;

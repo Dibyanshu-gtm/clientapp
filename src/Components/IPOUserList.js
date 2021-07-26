@@ -20,7 +20,7 @@ class IPOUserList extends Component{
     render(){
         const {ipos,isLoading}=this.state;
         if(isLoading){
-            return <p>.....Loading</p>
+            return <p>No Companies Found</p>
         }
         const ipoList= ipos.map(ipo=>{
             

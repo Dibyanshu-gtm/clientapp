@@ -136,13 +136,14 @@ export default class SheetJSApp extends React.Component {
         </div>
         <div className="row" class="mx-auto" >
           <div className="col-sm-12 ">
+            {'   '}
             <button
               disabled={!this.state.data.length}
               className="btn btn-primary"
               onClick={this.exportFile}
             >
               Download
-            </button>
+            </button>{'  '}
             <button
               disabled={!this.state.data.length}
               className="btn btn-success"
@@ -156,7 +157,7 @@ export default class SheetJSApp extends React.Component {
         <div className="row">
           <div className="col-sm-12">
             {!isLoaded&&(<OutTable data={this.state.data} cols={this.state.cols} />)}
-            {isLoaded&&(<div class="col-sm-5 card offset-md-3">
+            {isLoaded&&(<div class="col-sm-5 offset-md-3">
               <h3>Upload Summary</h3>
               <ul>
               <li>No of Records Uploaded: {resp.records}</li>
@@ -250,7 +251,8 @@ class OutTable extends React.Component {
   render() {
     return (
       <div className="table-responsive">
-        <table className="table table-striped">
+        <h3>Table Preview</h3>
+        <table className="table ">
           <thead>
             <tr>
               {this.props.cols.map(c => (

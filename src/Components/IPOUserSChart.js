@@ -108,7 +108,7 @@ let chartConfigsitem={
               chartConfigs.dataSource.dataset.push(newDataset);
               cs=chartConfigs;
               this.setState({chartConfigs:cs})
-              //console.log('chart'+JSON.stringify(chartConfigs));
+              
           })
         }
         else if(item.timetype=="Date")
@@ -141,7 +141,7 @@ let chartConfigsitem={
               chartConfigs.dataSource.dataset.push(newDataset);
               cs=chartConfigs;
               this.setState({chartConfigs:cs})
-              //console.log('chart'+JSON.stringify(chartConfigs));
+              
           })
         }
         
@@ -172,7 +172,7 @@ let chartConfigsitem={
         );
           return (
               <div>{title}
-              <div class="card">
+              <div >
               <h3>Things to remember while using the compare tool</h3>
               <div class="card-body">
               <ul>
@@ -223,8 +223,8 @@ let chartConfigsitem={
                         <Input type="text" name="todate" id="todate" value={item.todate || ''} onChange={this.handleChange}/>
                     </FormGroup>)}
                     <FormGroup>
-                      <Button color="primary" type="submit">Add</Button>
-                      <Button color="danger" onClick={this.remove}>Remove</Button>
+                      <Button color="primary"  className="mt-3" type="submit">Add</Button>{'  '}
+                      <Button color="danger"  className="mt-3" onClick={this.remove}>Remove</Button>
                     </FormGroup>
                   </Form>
               </Container>

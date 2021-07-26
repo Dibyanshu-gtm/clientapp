@@ -26,7 +26,7 @@ class SectorUserList extends Component{
     render(){
         const{sectors,isLoading}=this.state;
         if(isLoading){
-            return <p>Loading</p>
+            return <p>No Sectors Found</p>
         }
         const secList=sectors.map(sector=>{
             
@@ -47,9 +47,6 @@ class SectorUserList extends Component{
                     </ul>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleModalShowHide()}>
-                        Close
-                    </Button>
                     </Modal.Footer>
                 </Modal></td>
             </tr>

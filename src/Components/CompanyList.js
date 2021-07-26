@@ -59,7 +59,12 @@ class CompanyList extends Component{
     render(){
         const {companies,isLoading}=this.state;
         if(isLoading){
-            return<div> <p>.....Loading</p>
+            return<div> <p>Companies not found. Add Some companies</p>
+            <div class="d-flex justify-content-center">
+  <div class="spinner-border text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
             <div className="float-right">
                         <Button color="success" tag={Link} to="/addcompany">Add Company</Button>
                     </div>
@@ -72,8 +77,8 @@ class CompanyList extends Component{
                 <td>{company.ceo}</td>
                 <td>{company.companyBrief}</td>
                 <td>
-                    <Button size="sm" color="primary" tag={Link} to={"/companies/"+company.id}>Edit</Button>
-                    <Button size="sm" color="primary" onClick={()=>this.delete(company.id)} >Delete</Button>
+                    <Button size="sm" color="primary" className="mr-3" tag={Link} to={"/companies/"+company.id}>Edit</Button>
+                    {' '}<Button size="sm" color="danger" onClick={()=>this.delete(company.id)} >Delete</Button>
                 </td>
             </tr>
         });

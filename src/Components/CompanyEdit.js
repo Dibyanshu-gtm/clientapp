@@ -85,8 +85,8 @@ class CompanyEdit extends Component{
                     </FormGroup>
                     <Input type="hidden" name="id" id="id" value={company.id}></Input>
                     <FormGroup>
-            <Button color="primary" type="submit">Save</Button>{' '}
-            <Button color="secondary" tag={Link} to="/companies">Cancel</Button>
+            <Button color="primary" className="mt-4 mr-3" type="submit">Save</Button>{' '}
+            <Button color="secondary" className="mt-4 mr-3" tag={Link} to="/companies">Cancel</Button>
           </FormGroup>
                 </Form>
             </Container>

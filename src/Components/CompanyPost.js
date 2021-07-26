@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Row,Col } from 'react-bootstrap';
 import authHeader from '../Services/auth-header';
 class CompanyPost extends Component{
     postItem={
@@ -27,7 +28,7 @@ class CompanyPost extends Component{
         this.handleSubmit= this.handleSubmit.bind(this);
     }
     componentDidMount(){
-        //const API_URL='http://localhost:8080/';
+      //const API_URL='http://localhost:8080/';
       const API_URL='https://stockexchangebackend.herokuapp.com/'
         fetch(API_URL+'exchange',{
           headers: authHeader()
@@ -70,52 +71,76 @@ class CompanyPost extends Component{
         const optionsec=sectors.map((sector)=>
         <option value={sector.sectorName}>{sector.sectorName}</option>
         );
-        const title=<h2>Add Group</h2>
+        const title=<h2>Add Company</h2>
         return <div>
             <Container>
                 {title}
                 
                 <Form onSubmit={this.handleSubmit}>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="companyName">Company Name</Label>
                         <Input type="text" name="companyName" id="companyName" value={item.companyName || ''}
                         onChange={this.handleChange} autoComplete="companyName"/>
                     </FormGroup>
+                    </Col>
+                    <Row form>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="turnover">TurnOver</Label>
                         <Input type="number" step="any" name="turnover" id="turnover" value={item.turnover || ''}
                         onChange={this.handleChange} autoComplete="turnover" />
                     </FormGroup>
+                    </Col>
+                    <Col md={4}>
                     <FormGroup>
                         <Label for="ceo">CEO</Label>
                         <Input type="text" name="ceo" id="ceo" value={item.ceo || ''}
                         onChange={this.handleChange} autoComplete="ceo"/>
                     </FormGroup>
+                    </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
                     <FormGroup>
                         <Label for="boardOfDirectors">BoardOfDirectors</Label>
                         <Input type="text" name="boardOfDirectors" id="boardOfDirectors" value={item.boardOfDirectors || ''}
                         onChange={this.handleChange} autoComplete="boardOfDirectors"/>
                     </FormGroup>
+                    </Col>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="companyBrief">Brief</Label>
                         <Input type="text" name="companyBrief" id="companyBrief" value={item.companyBrief || ''}
                         onChange={this.handleChange} autoComplete="companyBrief"/>
                     </FormGroup>
+                    </Col>
+                    </Row>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="openDateTime">Open Date Time ("yyyy-mm-dd HH:mm:ss")</Label>
                         <Input type="text" name="openDateTime" id="openDateTime" value={item.openDateTime || ''}
                         onChange={this.handleChange} autoComplete="openDateTime"/>
                     </FormGroup>
+                    </Col>
+                    <Row>
+                        <Col md={6}>
                     <FormGroup>
                         <Label for="pricePerShare">Price Per Share</Label>
                         <Input type="number" step="any" name="pricePerShare" id="pricePerShare" value={item.pricePerShare || ''}
                         onChange={this.handleChange} autoComplete="pricePerShare"/>
                     </FormGroup>
+                    </Col>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="totalNumberOfShares">Total Number of Shares</Label>
                         <Input type="number" step="any" name="totalNumberOfShares" id="totalNumberOfShares" value={item.totalNumberOfShares || ''}
                         onChange={this.handleChange} autoComplete="totalNumberOfShares"/>
                     </FormGroup>
+                    </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
                     <FormGroup>
                         <Label for="exchangeName">Exchange Name</Label>
                         {/* <Input type="text" name="exchangeName" id="exchangeName" value={item.exchangeName || ''}
@@ -127,6 +152,8 @@ class CompanyPost extends Component{
                           {optionItems}
                         </Input>
                     </FormGroup>
+                    </Col>
+                    <Col md={6}>
                     <FormGroup>
                         <Label for="sector">Sector</Label>
                         {/* <Input type="text" name="sector" id="sector" value={item.sector || ''}
@@ -138,14 +165,18 @@ class CompanyPost extends Component{
                             {optionsec}
                     </Input>
                     </FormGroup>
+                    </Col>
+                    </Row>
+                    <Col md={3}>
                     <FormGroup>
                         <Label for="CompanyCode">Company Code</Label>
                         <Input type="text" name="CompanyCode" id="CompanyCode" value={item.CompanyCode || ''}
                         onChange={this.handleChange} autoComplete="CompanyCode"/>
                     </FormGroup>
+                    </Col>
                     <FormGroup>
-            <Button color="primary" type="submit">Save</Button>{' '}
-            <Button color="secondary" tag={Link} to="/companies">Cancel</Button>
+            <Button color="primary" className="mt-4 mr-3" type="submit">Save</Button>{' '}
+            <Button color="secondary" className="mt-4 ml-3" tag={Link} to="/companies">Cancel</Button>
           </FormGroup>
                 </Form>
             </Container>

@@ -113,6 +113,8 @@ const required = value => {
       }
       render() {
         return (
+          <div>
+            <h1>Register To Start your Journey</h1>
           <div className="col-md-12">
             <div className="card card-container">
               <img
@@ -129,7 +131,7 @@ const required = value => {
               >
                 {!this.state.successful && (
                   <div>
-                    <div className="form-group">
+                    <div className="form-group" class="logreg">
                       <label htmlFor="username">Username</label>
                       <Input
                         type="text"
@@ -141,7 +143,7 @@ const required = value => {
                       />
                     </div>
     
-                    <div className="form-group">
+                    <div className="form-group" class="logreg">
                       <label htmlFor="email">Email</label>
                       <Input
                         type="text"
@@ -153,7 +155,7 @@ const required = value => {
                       />
                     </div>
     
-                    <div className="form-group">
+                    <div className="form-group" class="logreg">
                       <label htmlFor="password">Password</label>
                       <Input
                         type="password"
@@ -165,8 +167,8 @@ const required = value => {
                       />
                     </div>
     
-                    <div className="form-group">
-                      <button className="btn btn-primary btn-block">Sign Up</button>
+                    <div className="form-group text-center">
+                      <button className="btn btn-primary btn-lg btn-block mt-3"><span class="buttontext">Register</span></button>
                     </div>
                   </div>
                 )}
@@ -193,6 +195,7 @@ const required = value => {
                 />
               </Form>
             </div>
+          </div>
           </div>
         );
       }

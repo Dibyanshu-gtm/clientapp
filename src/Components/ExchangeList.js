@@ -22,8 +22,14 @@ class ExchangeList extends Component{
         const {exchanges,isLoading}=this.state;
         if(isLoading){
             
-            return<div> <p>.....Loading</p>
+            return<div> <p>No Exchanges Found. Add Some</p>
+            <div class="d-flex justify-content-center">
+  <div class="spinner-border text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
             <div className="float-right">
+            {'   '}
                         <Button color="success" tag={Link} to="/addexchange">Add Exchange</Button>
                     </div></div>
         }

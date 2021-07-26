@@ -54,8 +54,8 @@ class SectorPost extends Component{
                     onChange={this.handleChange} autoComplete="brief" />
                 </FormGroup>
                 <FormGroup>
-        <Button color="primary" type="submit">Save</Button>{' '}
-        <Button color="secondary" tag={Link} to="/sectors">Cancel</Button>
+        <Button color="primary" className="mt-5 mr-3" type="submit">Save</Button>{' '}
+        <Button color="secondary" className="mt-5 ml-3" tag={Link} to="/sectors">Cancel</Button>
       </FormGroup>
             </Form>
         </Container>

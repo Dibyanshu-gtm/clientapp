@@ -21,7 +21,7 @@ import SectorUserList from './Components/SectorUserList';
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch ,Link} from 'react-router-dom'; 
 import AuthService from './Services/auth.service';
-import {Collapse,Nav,Navbar,NavbarBrand,NavbarToggler,NavItem,NavLink} from 'reactstrap';
+import { Navbar, Container,Nav } from 'react-bootstrap';
 class App extends Component{
   constructor(props){
     super(props);
@@ -56,92 +56,48 @@ componentDidMount(){
     
     return(
       
-        <div>  
-          <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Stock App</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink
-                        href="/">Home</NavLink>
-                    </NavItem>
-                    {isAdmin &&(<NavItem>
-                        <NavLink
-                        href="/upload">Upload</NavLink>
-                    </NavItem>)}
-                    {isAdmin &&(<NavItem>
-                        <NavLink
-                        href="/companies">Companies</NavLink>
-                    </NavItem>)}
-                    {isAdmin &&(<NavItem>
-                        <NavLink
-                        href="/exchanges">Exchanges</NavLink>
-                    </NavItem>)}
-                    {isAdmin &&(<NavItem>
-                        <NavLink
-                        href="/sectors">Sectors</NavLink>
-                    </NavItem>)}
-                    {isAdmin &&(<NavItem>
-                        <NavLink
-                        href="/ipodetails">IPO</NavLink>
-                    </NavItem>)}
-                    {
-                      !isAdmin &&currentUser &&(<NavItem>
-                        <NavLink
-                        href="/ipouser">IPO</NavLink>
-                    </NavItem>)
-                    }
-                    {
-                      !isAdmin &&currentUser &&(<NavItem>
-                        <NavLink
-                        href="/chart">Chart</NavLink>
-                    </NavItem>)
-                    }
-                    {
-                      !isAdmin &&currentUser &&(<NavItem>
-                        <NavLink
-                        href="/schart">Sector Chart</NavLink>
-                    </NavItem>)
-                    }
-                    {
-                      !isAdmin &&currentUser &&(<NavItem>
-                        <NavLink
-                        href="/companieslist">Companies</NavLink>
-                    </NavItem>)
-                    }
-                    {
-                      !isAdmin &&currentUser &&(<NavItem>
-                        <NavLink
-                        href="/sectorlist">Sectors</NavLink>
-                    </NavItem>)
-                    }
-                    
-                    {currentUser ?(
-                      <NavItem>
-                        <NavLink><a href="/login" onClick={this.logOut}>LogOut</a></NavLink>
-                      </NavItem>
-                    ):(
-                      <NavItem>
-                        <NavLink
-                        href="/login">Login</NavLink>
-                      </NavItem>
-                    )}
-                    {
-                      currentUser?(<p></p>):(
-                        <NavItem>
-                        <NavLink
-                        href="/register">Register</NavLink>
-                    </NavItem>
-                    )
-                    }
-                    
-
-                </Nav>
-            </Collapse>
-        </Navbar>
-
+        <div class="bg-image"> 
+        <div class="mask"> 
+          
       <div>
+      <Navbar className="color-nav"  variant="dark" expand="lg">
+      <p> </p>
+    <Navbar.Brand href="/">
+    <img src="./stockapp.png" width="30" height="30" />{' '}
+      Stock App</Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="container-fluid" >
+      {isAdmin &&(<Nav.Link href="/upload">Upload</Nav.Link>)}
+      {isAdmin &&(<Nav.Link href="/companies">Companies</Nav.Link>)}
+      {isAdmin &&(<Nav.Link href="/exchanges">Exchanges</Nav.Link>)}
+      {isAdmin &&(<Nav.Link href="/ipodetails">IPO</Nav.Link>)}
+      {isAdmin &&(<Nav.Link href="/sectors">Sectors</Nav.Link>)}
+      {!isAdmin && currentUser &&(<Nav.Link href="/ipouser">IPO</Nav.Link>)}
+      {!isAdmin && currentUser &&(<Nav.Link href="/chart">Compare Companies</Nav.Link>)}
+      {!isAdmin && currentUser &&(<Nav.Link href="/schart">Compare Sectors</Nav.Link>)}
+      {!isAdmin && currentUser &&(<Nav.Link href="/companieslist">Companies</Nav.Link>)}
+      {!isAdmin && currentUser &&(<Nav.Link href="/sectorlist">Sectors</Nav.Link>)}
+      
+      {currentUser?(
+        
+        <Nav.Link    href="/login" onClick={this.logOut}>Logout {currentUser.username}</Nav.Link>
+      ):(
+        <Nav.Link href="/login">Login</Nav.Link>
+      )}
+      {currentUser?(
+        <p></p>
+      ):(
+        <Nav.Link href="/register">Register</Nav.Link>
+      )}
+    
+    </Nav>
+    </Navbar.Collapse>
+    
+  </Navbar>
+      </div>
+        
+        <div >
         <Switch>
         <Route path='/' exact={true} component={Home}/>
         <Route path="/upload" exact={true} component={SheetJSApp} />
@@ -164,7 +120,7 @@ componentDidMount(){
         <Route path="/sectorlist" component={SectorUserList} />
         </Switch>
         </div>
-  
+        </div>
       </div>
       
     );
