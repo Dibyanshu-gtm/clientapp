@@ -25,5 +25,5 @@ Prerequisite to deployment , check to it that you have NodeJs , npm or any other
 
 * Register on Heroku and Create a free account
 * Select New -> Create new App
-* Give your application a new name and Link your GitHub repository 
+* Give your application a new name and Link your GitHub repository in Settings
 * Deploy the application and test it out on the deployed URL.
