@@ -4,6 +4,8 @@ Stock app is a simple Spring + React Application for storing Companies , Stock E
 * Backend: https://stockexchangebackend.herokuapp.com
 * Frontend: https://stockexchangefrontend.herokuapp.com
 
+All the screenshots for Postman requests are included in the repository. Also the working screenshots can be checked in the Working folder.
+
 
 ## Technology Stack Used
 
